@@ -7,4 +7,4 @@ def test_EntityGroup():
     entity_group = EntityGroup()
     assert entity_group
 
-    assert entity_group.shuffle() is None  # Loopback should work but return nothing
+    assert entity_group.shuffle() is None  # Pass-through should work but return nothing

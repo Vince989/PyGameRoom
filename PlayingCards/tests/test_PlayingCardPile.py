@@ -25,4 +25,4 @@ def test_PlayingCardPile():
     deck = PlayingCardPile(full_decks=2, jokers=2)
     assert len(deck.items) == (deck_size * 2) + (2 * 2)  # should be 108 items
 
-    assert deck.shuffle() is None  # Loopback should work but return nothing
+    assert deck.shuffle() is None  # Pass-through should work but return nothing
