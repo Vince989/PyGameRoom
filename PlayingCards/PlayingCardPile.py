@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from ..EntityGroup import EntityGroup
-from .PlayingCard import PlayingCard, RANKS_LIST, SUITS_LIST
+from .PlayingCard import PlayingCard, STD_RANKS_SEQUENCE, SUITS_LIST
 
 
 class PlayingCardPile(EntityGroup):
@@ -18,7 +18,7 @@ class PlayingCardPile(EntityGroup):
         # Add X decks of base cards
         for times in range(full_decks):
             for suit in SUITS_LIST:
-                for rank in RANKS_LIST:
+                for rank in STD_RANKS_SEQUENCE:
                     card = PlayingCard(suit=suit, rank=rank, visible=False)
                     self.items.append(card)
 
