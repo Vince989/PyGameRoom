@@ -34,7 +34,7 @@ class PlayingCard(Entity):
         """
         French-style playing cards
 
-        :param str suit: Spades, clubs, etc
+        :param str suit: Spades, clubs, etc.
         :param str rank: A, 2, ... 9, 10, J, Q, K
         :param int joker_id: If the card is a Joker, which number it is, otherwise 0
         :param bool visible: If the card is visible to others

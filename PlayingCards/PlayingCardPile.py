@@ -8,7 +8,7 @@ class PlayingCardPile(EntityGroup):
         """
         A French-style playing card pile.
 
-        Can be auto-filled with a number of decks, each having a number of Jokers.
+        Can be automatically filled with a number of decks, each having a number of Jokers.
 
         :param int full_decks: The amount of decks of 52 cards to generate
         :param int jokers: The amount of jokers to generate per deck
