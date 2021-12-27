@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..EntityGroup import EntityGroup
+from EntityGroup import EntityGroup
 from .PlayingCard import PlayingCard, STD_RANKS_SEQUENCE, SUITS_LIST
 
 

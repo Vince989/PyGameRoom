@@ -19,5 +19,8 @@ class Poker(object):
         for player in range(players):
             self.hands[player] = self.deck.deal(5)
 
-        # TODO To complete...
-        pass
+    def play(self):
+        for hand in self.hands.items():
+            print("Player {}'s hand : {}".format(hand[0], hand[1]))
+
+    # TODO To complete...

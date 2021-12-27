@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+from PlayingCards.Poker import Poker
 
 MENU_CHOICES_LIST = ["quit", "poker", "blackjack"]
 
@@ -12,12 +14,12 @@ def main():
 
         if choice == "poker":
             print("Starting Poker...")
-            # TODO Enter Poker
+            Poker(1).play()
             break
 
         elif choice == "blackjack":
             print("Starting Blackjack...")
-            # TODO Enter Blackjack
+            # Enter Blackjack
             break
 
         elif choice == "quit":
@@ -33,4 +35,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "poker":
+            Poker(1).play()
+    else:
+        main()

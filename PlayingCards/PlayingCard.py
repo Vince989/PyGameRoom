@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..Entity import Entity
+from Entity import Entity
 
 # Unicode characters from : https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
 SUIT_CLUBS = "♧"  # ♣ ♧
