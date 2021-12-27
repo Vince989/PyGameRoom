@@ -25,6 +25,12 @@ class EntityGroup(object):
         return shuffle(self.items)
 
     def take(self, amount=1):
+        """
+        Remove entities from this group
+
+        :param int amount: Number of entities to remove
+        :return:
+        """
         stack = []
         for i in range(amount):
             stack.append(self.items.pop())
@@ -32,7 +38,11 @@ class EntityGroup(object):
         return stack
 
     def add(self, new_items):
+        """
+        Add/append entities to this group
+
+        :param new_items: List of entities to add
+        :return: None
+        """
         for item in new_items:
             self.items.append(item)
-
-    # To complete as needed...
