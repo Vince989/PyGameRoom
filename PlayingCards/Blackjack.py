@@ -20,13 +20,15 @@ class Blackjack(object):
         # then another one for each player
         for number in range(players):
             self.hands[number] = PlayingCardPile()
-            self.hands[number] = self.deck.take(1)
+            self.hands[number].add(self.deck.take(1))
         self.dealer = self.deck.take(1)
         for player in range(players):
-            self.hands[player] = self.deck.take(1)
+            self.hands[player].add(self.deck.take(1))
 
-    def play(self):
         for hand in self.hands.items():
             print("Player {}'s initial hand : {}".format(hand[0], hand[1]))
+
+    def play(self):
+        pass
 
     # TODO To complete...

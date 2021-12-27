@@ -9,6 +9,13 @@ class EntityGroup(object):
         """
         self.items = []
 
+    def __repr__(self):
+        output = ""
+        sep = ", "
+        for item in self.items:
+            output += str(item) + sep
+        return output[:-len(sep)]
+
     def shuffle(self):
         """
         "Loop-back" to enable shuffling the current set
@@ -23,5 +30,9 @@ class EntityGroup(object):
             stack.append(self.items.pop())
 
         return stack
+
+    def add(self, new_items):
+        for item in new_items:
+            self.items.append(item)
 
     # To complete as needed...

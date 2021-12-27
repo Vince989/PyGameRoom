@@ -35,7 +35,7 @@ def main():
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == "blackjack":
-            players = 5
+            players = 2
             Blackjack(players).play()
     else:
         main()
