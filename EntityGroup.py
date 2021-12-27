@@ -17,4 +17,11 @@ class EntityGroup(object):
         """
         return shuffle(self.items)
 
+    def take(self, amount=1):
+        stack = []
+        for i in range(amount):
+            stack.append(self.items.pop())
+
+        return stack
+
     # To complete as needed...

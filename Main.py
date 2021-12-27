@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-from PlayingCards.Poker import Poker
+from PlayingCards.Blackjack import Blackjack
 
 MENU_CHOICES_LIST = ["quit", "poker", "blackjack"]
 
@@ -14,12 +14,11 @@ def main():
 
         if choice == "poker":
             print("Starting Poker...")
-            Poker(1).play()
             break
 
         elif choice == "blackjack":
             print("Starting Blackjack...")
-            # Enter Blackjack
+            Blackjack(1).play()
             break
 
         elif choice == "quit":
@@ -29,14 +28,14 @@ def main():
         else:
             print("Invalid choice, try again.")
 
-    # It's all over folks!
     print("Leaving, all OK...")
     return
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == "poker":
-            Poker(1).play()
+        if sys.argv[1] == "blackjack":
+            players = 5
+            Blackjack(players).play()
     else:
         main()

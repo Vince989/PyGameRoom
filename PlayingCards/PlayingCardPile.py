@@ -26,10 +26,3 @@ class PlayingCardPile(EntityGroup):
             for joker in range(1, jokers+1):
                 card = PlayingCard(joker_id=joker, visible=False)
                 self.items.append(card)
-
-    def deal(self, amount=1):
-        stack = []
-        for i in range(amount):
-            stack.append(self.items.pop())
-
-        return stack
