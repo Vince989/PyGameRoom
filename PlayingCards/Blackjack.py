@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from .PlayingCardPile import PlayingCardPile
+from .PlayingCard import RANK_A
 
 
 class Blackjack(object):
@@ -10,6 +11,8 @@ class Blackjack(object):
         :param int players: Number of players
         """
         super().__init__()
+
+        self.debug = True
 
         self.hands = []  # The players' hands
 
@@ -28,21 +31,36 @@ class Blackjack(object):
         for player in range(players):
             self.hands[player].add(self.deck.take(1))
 
-        # Debug info
-        if True:
-            print("Dealer's hand : {}".format(self.dealer))
+        if self.debug:
+            print("Dealer's initial hand : {}".format(self.dealer))
             for hand in self.hands:
                 print("Player's initial hand : {}".format(hand))
 
     def play_console(self):
-        for hand in self.hands:
-            print(self.eval_score(hand.items))
-            pass
+        if self.debug:
+            for hand in self.hands:
+                print(self.eval_blackjack_score(hand.items))
 
-    def eval_score(self, hand):
+    @staticmethod
+    def eval_blackjack_score(hand):
         score = 0
+        aces = 0
+        faces = 0
+
+        # Remember it if there's at least an Ace, and "ceil off" the Faces
         for card in hand:
-            pass
+            if card.rank == RANK_A:
+                aces += 1
+            if card.rank > 10:
+                card.rank = 10
+                faces += 1
+            score += card.rank
+
+        if len(hand) == 2 and aces and faces:  # Blackjack!
+            score = 21
+        elif aces and score < 11:  # Add the Ace value if there's room
+            score += 10
+
         return score
 
     # To complete...
