@@ -11,20 +11,20 @@ SUIT_COLOR_RED = [SUIT_HEARTS, SUIT_DIAMONDS]
 SUIT_COLOR_BLACK = [SUIT_SPADES, SUIT_CLUBS]
 SUITS_LIST = [SUIT_CLUBS, SUIT_DIAMONDS, SUIT_HEARTS, SUIT_SPADES]
 
-RANK_A = "A"
-RANK_2 = "2"
-RANK_3 = "3"
-RANK_4 = "4"
-RANK_5 = "5"
-RANK_6 = "6"
-RANK_7 = "7"
-RANK_8 = "8"
-RANK_9 = "9"
-RANK_10 = "10"
-RANK_JACK = "J"
-RANK_QUEEN = "Q"
-RANK_KING = "K"
-RANK_NONE = ""
+RANK_A = 1
+RANK_2 = 2
+RANK_3 = 3
+RANK_4 = 4
+RANK_5 = 5
+RANK_6 = 6
+RANK_7 = 7
+RANK_8 = 8
+RANK_9 = 9
+RANK_10 = 10
+RANK_JACK = 11
+RANK_QUEEN = 12
+RANK_KING = 13
+RANK_NONE = 0
 
 STD_RANKS_FACES = [RANK_JACK, RANK_QUEEN, RANK_KING, ]
 STD_RANKS_SEQUENCE = [RANK_A, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7, RANK_8, RANK_9,
@@ -52,4 +52,14 @@ class PlayingCard(Entity):
         if self.joker_id:
             return "Joker #" + str(self.joker_id)
         else:
-            return self.suit + " " + self.rank
+            if self.rank == 11:
+                rank = "J"
+            elif self.rank == 12:
+                rank = "Q"
+            elif self.rank == 13:
+                rank = "K"
+            elif self.rank == 1:
+                rank = "A"
+            else:
+                rank = str(self.rank)
+            return self.suit + " " + rank
