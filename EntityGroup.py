@@ -9,7 +9,8 @@ class EntityGroup(object):
         """
         self.items = []
 
-    def __repr__(self):
+    def __str__(self):
+        # Could be more python-ic maybe ?
         output = ""
         sep = ", "
         for item in self.items:

@@ -48,7 +48,7 @@ class PlayingCard(Entity):
         self.joker_id = joker_id
         self.visible = visible
 
-    def __repr__(self):  # pragma: no cover
+    def __str__(self):  # pragma: no cover
         if self.joker_id:
             return "Joker #" + str(self.joker_id)
         else:

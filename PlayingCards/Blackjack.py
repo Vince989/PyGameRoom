@@ -11,24 +11,38 @@ class Blackjack(object):
         """
         super().__init__()
 
-        self.hands = {}  # The various players' hands
+        self.hands = []  # The players' hands
 
         self.deck = PlayingCardPile(full_decks=6)
         self.deck.shuffle()
 
-        # Draw 1 card for each player, then the dealer,
+        # Init and draw 1 card for each player, then one for the dealer,
         # then another one for each player
-        for number in range(players):
-            self.hands[number] = PlayingCardPile()
-            self.hands[number].add(self.deck.take(1))
-        self.dealer = self.deck.take(1)
+        for player in range(players):
+            self.hands.append(PlayingCardPile())
+            self.hands[player].add(self.deck.take(1))
+
+        self.dealer = PlayingCardPile()
+        self.dealer.add(self.deck.take(1))
+
         for player in range(players):
             self.hands[player].add(self.deck.take(1))
 
-        for hand in self.hands.items():
-            print("Player {}'s initial hand : {}".format(hand[0], hand[1]))
+        # Debug info
+        if True:
+            print("Dealer's hand : {}".format(self.dealer))
+            for hand in self.hands:
+                print("Player's initial hand : {}".format(hand))
 
-    def play(self):
-        pass
+    def play_console(self):
+        for hand in self.hands:
+            print(self.eval_score(hand.items))
+            pass
 
-    # TODO To complete...
+    def eval_score(self, hand):
+        score = 0
+        for card in hand:
+            pass
+        return score
+
+    # To complete...

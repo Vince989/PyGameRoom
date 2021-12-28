@@ -18,7 +18,7 @@ def main():
 
         elif choice == "blackjack":
             print("Starting Blackjack...")
-            Blackjack(1).play()
+            Blackjack(1).play_console()
             break
 
         elif choice == "quit":
@@ -36,6 +36,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == "blackjack":
             players = 2
-            Blackjack(players).play()
+            Blackjack(players).play_console()
     else:
         main()
