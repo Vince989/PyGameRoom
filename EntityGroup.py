@@ -10,7 +10,7 @@ class EntityGroup(object):
         self.items = []
 
     def __str__(self):
-        # Could be more python-ic maybe ?
+        # Could be more python-ic probably ?
         output = ""
         sep = ", "
         for item in self.items:
@@ -27,16 +27,16 @@ class EntityGroup(object):
 
     def take(self, amount=1):
         """
-        Remove entities from this group
+        Remove some entities from this group
 
-        :param int amount: Number of entities to remove
-        :return:
+        :param int amount: Number of entities to take (pop)
+        :return: The removed entities
         """
-        stack = []
+        entities = []
         for i in range(amount):
-            stack.append(self.items.pop())
+            entities.append(self.items.pop())
 
-        return stack
+        return entities
 
     def add(self, new_items):
         """
