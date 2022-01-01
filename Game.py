@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
 
 class Game(object):
-    pass
+    def __init__(self):
+        self.players = []

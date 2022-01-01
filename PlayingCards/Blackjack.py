@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Game import Game
+from Player import Player
 from .PlayingCardPile import PlayingCardPile
 from .PlayingCard import RANK_A
 
@@ -15,11 +16,11 @@ class Blackjack(Game):
 
         self.debug = True  # Show some more info
 
-        self.num_players = num_players
-        self.hands = []  # The players' hands
-        self.player_names = []
+        self.num_players = num_players  # Stored var, might be removed
+        for player in range(num_players):
+            self.players.append(Player(player))  # Index as a name by default
 
-        self.deck = PlayingCardPile(full_decks=6)
+        self.deck = PlayingCardPile(full_decks=6)  # Supposed to be always 6 decks in Blackjack ??
         self.deck.shuffle()
 
         self.dealer = PlayingCardPile()
@@ -29,34 +30,32 @@ class Blackjack(Game):
     def setup(self):
         # Init and draw 1 card for each player, then one for the dealer,
         # then another one for each player
-        for player in range(self.num_players):
-            self.hands.append(PlayingCardPile())
-            self.hands[player].add(self.deck.take(1))
-            self.player_names.append(player)
+        for player in self.players:
+            player.hand = PlayingCardPile()
+            player.hand.add(self.deck.take(1))
 
         self.dealer = PlayingCardPile()
         self.dealer.add(self.deck.take(1))
 
-        for player in range(self.num_players):
-            self.hands[player].add(self.deck.take(1))
+        for player in self.players:
+            player.hand.add(self.deck.take(1))
 
         if self.debug:
             print("Dealer's initial hand : {}".format(self.dealer))
-            for player_no in range(self.num_players):
-                print("Player {}'s initial hand : {}".format(str(self.player_names[player_no]),
-                                                             str(self.hands[player_no])))
+            for player in self.players:
+                print("Player {}'s initial hand : {}".format(player.name, str(player.hand)))
 
     def play_console(self):
-        for player_no in range(self.num_players):
+        for player in self.players:
             choice = ""
             while choice not in ["stand"]:
-                print("\nPlayer {}, your hand is : {}".format(str(self.player_names[player_no]),
-                                                              str(self.hands[player_no])))
+                print("\nPlayer {}, your hand is : {}".format(player.name, str(player.hand)))
                 choice = input("Your hand is worth {}, what do you wanna do? (hit/stand) : ".
-                               format(self.eval_score(self.hands[player_no]))).lower()
+                               format(self.eval_score(player.hand)).
+                               lower())
 
                 if choice == "hit":
-                    self.hands[player_no].add(self.deck.take())
+                    player.hand.add(self.deck.take())
 
         self.dealer.add(self.deck.take())
         print("\nDealer's new hand : {}, worth {}".format(
