@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Game import Game
+from Player import Player
 from .PlayingCardPile import PlayingCardPile
 from .PlayingCard import RANK_A
 
@@ -19,7 +20,9 @@ class Blackjack(Game):
         self.deck = PlayingCardPile(full_decks=6)
         self.deck.shuffle()
 
-        self.dealer = PlayingCardPile()
+        self.dealer = Player("DEALER")
+        self.dealer.hand = []
+        self.dealer.hand = PlayingCardPile()
 
         self.setup()
 
@@ -30,37 +33,42 @@ class Blackjack(Game):
             player.hand = PlayingCardPile()
             player.hand.add(self.deck.take(1))
 
-        self.dealer.add(self.deck.take(1))
+        self.dealer.hand.add(self.deck.take(1))
 
         for player in self.players:
             player.hand.add(self.deck.take(1))
 
         if self.debug:
-            print("Dealer's first card : {}".format(self.dealer))
+            print("Dealer's first card : {}".format(self.dealer.hand))
             for player in self.players:
-                print("Player {}'s initial hand : {}".format(player.name, str(player.hand)))
+                print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
     def play_console(self):
         # Player drawing loop
         for player in self.players:
             choice = ""
-            while choice not in ["stand"]:
-                print("\nPlayer {}, your hand is : {}".format(player.name, str(player.hand)))
-                choice = input("Your hand is worth {}, what do you wanna do? (hit/stand) : ".
-                               format(self.eval_score(player.hand))).lower()
+            self._print_hand_and_score(player)
+            while (self.eval_score(player.hand) < 21) and (choice not in ["stand"]):
+                choice = input("What do you wanna do? (hit/stand) : ").lower()
 
                 if choice == "hit":
                     player.hand.add(self.deck.take(1))
+                    self._print_hand_and_score(player)
 
         # Dealer's 2nd card, then more draws while score under 17
-        self.dealer.add(self.deck.take(1))
-        print("\nDealer's initial hand : {}, worth {}".format(
-            str(self.dealer), self.eval_score(self.dealer)))
+        self.dealer.hand.add(self.deck.take(1))
+        self._print_hand_and_score(self.dealer)
 
-        while self.eval_score(self.dealer) < 17:
-            self.dealer.add(self.deck.take(1))
-            print("Dealer's new hand : {}, worth {}".format(
-                str(self.dealer), self.eval_score(self.dealer)))
+        while self.eval_score(self.dealer.hand) < 17:
+            self.dealer.hand.add(self.deck.take(1))
+            print("Dealer grabs another card...")
+            self._print_hand_and_score(self.dealer)
+
+        # TODO Check if players or dealer busted, to know who won or not
+
+    def _print_hand_and_score(self, player):
+        print("\nPlayer '{}', your hand is : {}".format(player.name, str(player.hand)))
+        print("Your hand is worth {} points".format(self.eval_score(player.hand)))
 
     @staticmethod
     def eval_score(player):
