@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Game import Game
-from Player import Player
 from .PlayingCardPile import PlayingCardPile
 from .PlayingCard import RANK_A
 
@@ -12,12 +11,9 @@ class Blackjack(Game):
 
         :param int num_players: Number of players
         """
-        super().__init__()
+        super().__init__(num_players)
 
         self.debug = True  # Show some more info
-
-        for player in range(num_players):
-            self.players.append(Player(player))  # Its index as a name by default
 
         # Supposed to be always 6 decks in Blackjack ??
         self.deck = PlayingCardPile(full_decks=6)
@@ -40,7 +36,7 @@ class Blackjack(Game):
             player.hand.add(self.deck.take(1))
 
         if self.debug:
-            print("Dealer's initial hand : {}".format(self.dealer))
+            print("Dealer's first card : {}".format(self.dealer))
             for player in self.players:
                 print("Player {}'s initial hand : {}".format(player.name, str(player.hand)))
 
@@ -50,18 +46,17 @@ class Blackjack(Game):
             while choice not in ["stand"]:
                 print("\nPlayer {}, your hand is : {}".format(player.name, str(player.hand)))
                 choice = input("Your hand is worth {}, what do you wanna do? (hit/stand) : ".
-                               format(self.eval_score(player.hand)).
-                               lower())
+                               format(self.eval_score(player.hand))).lower()
 
                 if choice == "hit":
-                    player.hand.add(self.deck.take())
+                    player.hand.add(self.deck.take(1))
 
-        self.dealer.add(self.deck.take())
-        print("\nDealer's new hand : {}, worth {}".format(
+        self.dealer.add(self.deck.take(1))
+        print("\nDealer's initial hand : {}, worth {}".format(
             str(self.dealer), self.eval_score(self.dealer)))
 
         while self.eval_score(self.dealer) < 17:
-            self.dealer.add(self.deck.take())
+            self.dealer.add(self.deck.take(1))
             print("Dealer's new hand : {}, worth {}".format(
                 str(self.dealer), self.eval_score(self.dealer)))
 
