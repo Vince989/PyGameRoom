@@ -41,6 +41,7 @@ class Blackjack(Game):
                 print("Player {}'s initial hand : {}".format(player.name, str(player.hand)))
 
     def play_console(self):
+        # Player drawing loop
         for player in self.players:
             choice = ""
             while choice not in ["stand"]:
@@ -51,6 +52,7 @@ class Blackjack(Game):
                 if choice == "hit":
                     player.hand.add(self.deck.take(1))
 
+        # Dealer's 2nd card, then more draws while score under 17
         self.dealer.add(self.deck.take(1))
         print("\nDealer's initial hand : {}, worth {}".format(
             str(self.dealer), self.eval_score(self.dealer)))
