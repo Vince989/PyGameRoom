@@ -16,11 +16,11 @@ class Blackjack(Game):
 
         self.debug = True  # Show some more info
 
-        self.num_players = num_players  # Stored var, might be removed
         for player in range(num_players):
-            self.players.append(Player(player))  # Index as a name by default
+            self.players.append(Player(player))  # Its index as a name by default
 
-        self.deck = PlayingCardPile(full_decks=6)  # Supposed to be always 6 decks in Blackjack ??
+        # Supposed to be always 6 decks in Blackjack ??
+        self.deck = PlayingCardPile(full_decks=6)
         self.deck.shuffle()
 
         self.dealer = PlayingCardPile()
@@ -34,7 +34,6 @@ class Blackjack(Game):
             player.hand = PlayingCardPile()
             player.hand.add(self.deck.take(1))
 
-        self.dealer = PlayingCardPile()
         self.dealer.add(self.deck.take(1))
 
         for player in self.players:
