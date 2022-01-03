@@ -32,7 +32,7 @@ STD_RANKS_SEQUENCE = [RANK_A, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7, RA
 
 
 class PlayingCard(Entity):
-    def __init__(self, suit=SUIT_NONE, rank=RANK_NONE, joker_id=0, visible=True):
+    def __init__(self, suit=SUIT_NONE, rank=RANK_NONE, joker_id=0, visible=False):
         """
         French-style playing cards
 
@@ -41,25 +41,27 @@ class PlayingCard(Entity):
         :param int joker_id: If the card is a Joker, which "number" it is, otherwise 0
         :param bool visible: If the card is visible to others (face up)
         """
-        super().__init__()
+        super().__init__(visible)
 
         self.suit = suit
         self.rank = rank
         self.joker_id = joker_id
-        self.visible = visible
 
     def __str__(self):  # pragma: no cover
-        if self.joker_id:
-            return "Joker #" + str(self.joker_id)
-        else:
-            if self.rank == 11:
-                rank = "J"
-            elif self.rank == 12:
-                rank = "Q"
-            elif self.rank == 13:
-                rank = "K"
-            elif self.rank == 1:
-                rank = "A"
+        if self.visible:
+            if self.joker_id:
+                return "Joker #" + str(self.joker_id)
             else:
-                rank = str(self.rank)
-            return self.suit + " " + rank
+                if self.rank == 11:
+                    rank = "J"
+                elif self.rank == 12:
+                    rank = "Q"
+                elif self.rank == 13:
+                    rank = "K"
+                elif self.rank == 1:
+                    rank = "A"
+                else:
+                    rank = str(self.rank)
+                return rank + " " + self.suit
+        else:
+            return "(face down)"
