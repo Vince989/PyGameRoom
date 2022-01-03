@@ -3,5 +3,7 @@ from ..Blackjack import Blackjack
 
 
 def test_blackjack():
-    blackjack = Blackjack(2)
-    assert blackjack.hands  # TODO Make better checks
+    players = 2
+    blackjack = Blackjack(players)
+    assert len(blackjack.players) == players  # TODO Make better checks
+    assert blackjack.dealer.name == Blackjack.DEALER_NAME
