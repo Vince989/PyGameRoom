@@ -21,25 +21,26 @@ class Blackjack(Game):
         self.deck.shuffle()
 
         self.dealer = Player("DEALER")
-        self.dealer.hand = []
         self.dealer.hand = PlayingCardPile()
 
         self.setup()
 
     def setup(self):
-        # Init and draw 1 card for each player, then one for the dealer,
-        # then another one for each player
+        # Init and draw 1 card for each player, then one for the dealer (and one hidden),
+        # then another 1 for each player
         for player in self.players:
             player.hand = PlayingCardPile()
-            player.hand.add(self.deck.take(1))
+            player.hand.add(self.deck.take())
 
-        self.dealer.hand.add(self.deck.take(1))
+        self.dealer.hand.add(self.deck.take())
 
         for player in self.players:
-            player.hand.add(self.deck.take(1))
+            player.hand.add(self.deck.take())
+
+        self.dealer.hand.add(self.deck.take(visible=False))
 
         if self.debug:
-            print("Dealer's first card : {}".format(self.dealer.hand))
+            print("Dealer's first cards : {}".format(str(self.dealer.hand)))
             for player in self.players:
                 print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
@@ -52,15 +53,15 @@ class Blackjack(Game):
                 choice = input("What do you wanna do? (hit/stand) : ").lower()
 
                 if choice == "hit":
-                    player.hand.add(self.deck.take(1))
+                    player.hand.add(self.deck.take())
                     self._print_hand_and_score(player)
 
-        # Dealer's 2nd card, then more draws while score under 17
-        self.dealer.hand.add(self.deck.take(1))
+        # Flip dealer's 2nd card, then more draws while score under 17
+        self.dealer.hand.items[1].visible = True
         self._print_hand_and_score(self.dealer)
 
         while self.eval_score(self.dealer.hand) < 17:
-            self.dealer.hand.add(self.deck.take(1))
+            self.dealer.hand.add(self.deck.take())
             print("Dealer grabs another card...")
             self._print_hand_and_score(self.dealer)
 
@@ -74,18 +75,18 @@ class Blackjack(Game):
     def eval_score(player):
         score = 0
         aces = 0
-        faces = 0
+        tens = 0
 
         # Remember it if there's at least an Ace, and "ceil off" the Faces
         for card in player.items:
             if card.rank == RANK_A:
                 aces += 1
-            if card.rank > 10:
+            if card.rank >= 10:
                 card.rank = 10
-                faces += 1
+                tens += 1
             score += card.rank
 
-        if len(player.items) == 2 and aces and faces:  # Blackjack!
+        if len(player.items) == 2 and aces and tens:  # Blackjack!
             score = 21
         elif aces and score < 11:  # Add the Ace value if there's room
             score += 10
