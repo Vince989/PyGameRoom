@@ -2,10 +2,10 @@
 
 
 class Entity(object):
-    def __init__(self):
+    def __init__(self, visible=True):
         """
         For shared functionality across cards/pieces/etc
         """
-        pass
+        self.visible = visible
 
     # To complete as needed...

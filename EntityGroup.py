@@ -25,16 +25,19 @@ class EntityGroup(object):
         """
         return shuffle(self.items)
 
-    def take(self, amount=1):
+    def take(self, amount=1, visible=True):
         """
         Remove some entities from this group
 
         :param int amount: Number of entities to take (pop)
+        :param bool visible: If the entity is visible
         :return: The removed entities
         """
         entities = []
         for i in range(amount):
-            entities.append(self.items.pop())
+            entity = self.items.pop()
+            entity.visible = visible
+            entities.append(entity)
 
         return entities
 
