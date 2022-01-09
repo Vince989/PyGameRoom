@@ -89,7 +89,8 @@ class Blackjack(Game):
             if player.active and self.eval_score(player.hand) >= dealer_final_score:
                 print("Player '{}' wins!".format(player.name))
             else:
-                print("Player '{}' loses...".format(player.name))
+                print("Player '{}' loses at {} points...".format(
+                      player.name, self.eval_score(player.hand)))
 
     def _print_hand_and_score(self, player):
         print("\nPlayer '{}', your hand is : {}".format(player.name, str(player.hand)))
