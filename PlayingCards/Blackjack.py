@@ -25,9 +25,7 @@ class Blackjack(Game):
         self.dealer = Player(self.DEALER_NAME)
         self.dealer.hand = PlayingCardPile()
 
-        self.setup()
-
-    def setup(self):
+    def console_setup(self):
         # Init and draw 1 card for each player, then one for the dealer (and one hidden),
         # then another 1 for each player
         for player in self.players:
