@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-from Player import Player
 
 
 class Game(object):
-    def __init__(self, num_players=1):
-        self.players = []
-        for player in range(num_players):
-            self.players.append(Player(player))  # Its index as a name by default
+    def __init__(self):
+        self.players = []  # There's gotta be at least ONE or SOME players, right???

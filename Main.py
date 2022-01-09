@@ -12,21 +12,22 @@ def main():
     while choice not in MENU_CHOICES_LIST:
         choice = input("Hi there! What you wanna do? (Poker/Blackjack/Quit) : ").lower()
 
-        if choice == "poker":
+        while choice == "poker":
             print("Starting Poker...")
             break
 
-        elif choice == "blackjack":
-            print("Starting Blackjack...")
-            Blackjack(1).play_console()
-            break
+        while choice == "blackjack":
+            print("\nNew Blackjack round...")
+            players = 2  # TODO Ask how many would like to play
+            blackjack = Blackjack(players)
+            blackjack.console_setup()
+            blackjack.play_console()
+            if input("Want to do another round? ").lower() != "yes":
+                break
 
-        elif choice == "quit":
+        if choice == "quit":
             print("Quitting...")
             break
-
-        else:
-            print("Invalid choice, try again.")
 
     print("Leaving, all OK...")
     return
