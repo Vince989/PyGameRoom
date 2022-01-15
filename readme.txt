@@ -1,8 +1,10 @@
+TODO Write some sort of Readme
+
 PyGameRoom
 
-TODO
+(...)
 
 
 Directions :
 
-- TODO
+- (...)
