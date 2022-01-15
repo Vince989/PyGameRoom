@@ -27,10 +27,10 @@ class EntityGroup(object):
 
     def take(self, amount=1, visible=True):
         """
-        Remove some entities from this group
+        Take/remove some entities from this group
 
-        :param int amount: Number of entities to take (pop)
-        :param bool visible: If the entity is visible
+        :param int amount: Amount of entities to take ("pop")
+        :param bool visible: If the entities will become visible to all
         :return: The removed entities
         """
         entities = []
@@ -48,6 +48,7 @@ class EntityGroup(object):
         :param new_items: List (or not) of entities to add
         :return: None
         """
+        # Make the input a list, if it's not one already
         if not isinstance(new_items, list):
             new_items = [new_items]
 
