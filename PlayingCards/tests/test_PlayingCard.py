@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from ..PlayingCard import PlayingCard, SUIT_NONE, RANK_NONE, \
     SUIT_CLUBS, RANK_10, RANK_A, SUIT_SPADES
-from . import make_10_of_clubs, make_ace_of_spades
 
 
 # noinspection PyPep8Naming
 def test_PlayingCard():
     # Create and test a few cards...
-    card = make_10_of_clubs()
+    card = PlayingCard(SUIT_CLUBS, RANK_10)
     assert card.suit == SUIT_CLUBS
     assert card.rank == RANK_10
     assert card.joker_id == 0
 
-    card = make_ace_of_spades()
+    card = PlayingCard(SUIT_SPADES, RANK_A)
     assert card.suit == SUIT_SPADES
     assert card.rank == RANK_A
     assert card.joker_id == 0

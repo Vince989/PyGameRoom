@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from ..Blackjack import Blackjack
 from ..PlayingCardsPlayer import PlayingCardsPlayer
-from . import make_2_of_diamonds, make_10_of_clubs, \
-    make_ace_of_spades, make_queen_of_hearts
+from ..PlayingCard import PlayingCard, \
+    SUIT_DIAMONDS, RANK_2, SUIT_SPADES, RANK_A, \
+    SUIT_CLUBS, RANK_10, SUIT_HEARTS, RANK_QUEEN
 
 
 def test_blackjack():
@@ -14,13 +15,13 @@ def test_blackjack():
 
 def test_eval_score():
     player = PlayingCardsPlayer("TEST")  # Arbitrary name
-    player.hand.add(make_2_of_diamonds())
-    player.hand.add(make_ace_of_spades())
+    player.hand.add(PlayingCard(SUIT_DIAMONDS, RANK_2))
+    player.hand.add(PlayingCard(SUIT_SPADES, RANK_A))
     assert Blackjack.eval_score(player.hand) == 13  # 2 + 11
-    player.hand.add(make_10_of_clubs())
+    player.hand.add(PlayingCard(SUIT_CLUBS, RANK_10))
     assert Blackjack.eval_score(player.hand) == 13  # 2 + 11 + 10 ... wait, 2 + 1 + 10
 
     player = PlayingCardsPlayer("TEST2")  # Arbitrary name, again
-    player.hand.add(make_ace_of_spades())
-    player.hand.add(make_queen_of_hearts())
+    player.hand.add(PlayingCard(SUIT_SPADES, RANK_A))
+    player.hand.add(PlayingCard(SUIT_HEARTS, RANK_QUEEN))
     assert Blackjack.eval_score(player.hand) == 21  # Blackjack case
