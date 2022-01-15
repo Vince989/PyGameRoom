@@ -45,8 +45,11 @@ class EntityGroup(object):
         """
         Add/append entities to this group
 
-        :param new_items: List of entities to add
+        :param new_items: List (or not) of entities to add
         :return: None
         """
+        if not isinstance(new_items, list):
+            new_items = [new_items]
+
         for item in new_items:
             self.items.append(item)

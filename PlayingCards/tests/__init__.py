@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from ..PlayingCard import PlayingCard, \
-    SUIT_CLUBS, RANK_10, \
-    SUIT_SPADES, RANK_A, \
-    SUIT_HEARTS, RANK_QUEEN, \
-    SUIT_DIAMONDS, RANK_2
+    SUIT_CLUBS, RANK_10, SUIT_SPADES, RANK_A, \
+    SUIT_HEARTS, RANK_QUEEN, SUIT_DIAMONDS, RANK_2
 
 
 def make_10_of_clubs():
