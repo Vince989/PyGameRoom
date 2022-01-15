@@ -6,7 +6,7 @@ from . import make_10_of_clubs, make_ace_of_spades
 
 # noinspection PyPep8Naming
 def test_PlayingCard():
-    # Create and test a 5 of clubs
+    # Create and test a few cards...
     card = make_10_of_clubs()
     assert card.suit == SUIT_CLUBS
     assert card.rank == RANK_10
