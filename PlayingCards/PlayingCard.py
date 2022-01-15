@@ -52,13 +52,13 @@ class PlayingCard(Entity):
             if self.joker_id:
                 return "Joker #" + str(self.joker_id)
             else:
-                if self.rank == 11:
+                if self.rank == RANK_JACK:
                     rank = "J"
-                elif self.rank == 12:
+                elif self.rank == RANK_QUEEN:
                     rank = "Q"
-                elif self.rank == 13:
+                elif self.rank == RANK_QUEEN:
                     rank = "K"
-                elif self.rank == 1:
+                elif self.rank == RANK_A:
                     rank = "A"
                 else:
                     rank = str(self.rank)
