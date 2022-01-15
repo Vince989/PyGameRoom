@@ -32,14 +32,14 @@ class Blackjack(Game):
         for player in self.players:
             player.hand.add(self.deck.take(1))
 
-        # then one for the dealer,
+        # ... then one for the dealer,
         self.dealer.hand.add(self.deck.take(1))
 
-        # then another 1 for each player
+        # ... then another 1 for each player,
         for player in self.players:
             player.hand.add(self.deck.take(1))
 
-        # and finally one hidden for the dealer
+        # ... and finally a hidden one for the dealer
         self.dealer.hand.add(self.deck.take(1, visible=False))
 
         if self.debug:
@@ -68,16 +68,17 @@ class Blackjack(Game):
             if player_score == 21:  # Blackjack or equivalent
                 print("Player '{}' will WIN, 21, baby!".format(player.name))
 
-        # Flip over dealer's 2nd card, then draw more cards while score under 17
+        # Then flip over dealer's 2nd card,
         self.dealer.hand.items[1].visible = True
         self._print_hand_and_score(self.dealer)
 
+        # ... and then draw more cards while its score is under 17
         while self.eval_score(self.dealer.hand) < 17:
             print("Dealer grabs another card...")
             self.dealer.hand.add(self.deck.take(1))
             self._print_hand_and_score(self.dealer)
 
-        # Check if players or dealer busted, to know who won or lost
+        # Check if the dealer busted, then the players, to know who won or lost
         dealer_final_score = self.eval_score(self.dealer.hand)
         if dealer_final_score > 21:
             dealer_final_score = 0
@@ -87,7 +88,8 @@ class Blackjack(Game):
 
         for player in self.players:
             if player.active and self.eval_score(player.hand) >= dealer_final_score:
-                print("Player '{}' wins!".format(player.name))
+                print("Player '{}' wins with {} points!".format(
+                      player.name, self.eval_score(player.hand)))
             else:
                 print("Player '{}' loses at {} points...".format(
                       player.name, self.eval_score(player.hand)))
