@@ -92,7 +92,7 @@ class Blackjack(Game):
                 print("Player '{}' loses at {} points...".format(
                       player.name, self.eval_score(player.hand)))
 
-    def _print_hand_and_score(self, player):
+    def _print_hand_and_score(self, player):  # pragma: no cover
         print("\nPlayer '{}', your hand is : {}".format(player.name, str(player.hand)))
         print("Your hand is worth {} points.".format(self.eval_score(player.hand)))
 

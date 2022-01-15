@@ -9,7 +9,7 @@ class EntityGroup(object):
         """
         self.items = []
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         # Could be more python-ic probably ?
         output = ""
         sep = ", "
