@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Entity import Entity
+from __init__ import console_colors
 
 # Unicode characters from : https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
 SUIT_CLUBS = "♧"  # ♣ ♧
@@ -48,6 +49,7 @@ class PlayingCard(Entity):
         self.joker_id = joker_id
 
     def __str__(self):  # pragma: no cover
+        color = ""
         if self.visible:
             if self.joker_id:
                 return "Joker #" + str(self.joker_id)
@@ -62,6 +64,10 @@ class PlayingCard(Entity):
                     rank = "A"
                 else:
                     rank = str(self.rank)
-                return rank + " " + self.suit
+
+                if self.suit in SUIT_COLOR_RED:
+                    color = console_colors.RED
+
+                return color + rank + " " + self.suit + console_colors.ENDC
         else:
             return "(face down)"

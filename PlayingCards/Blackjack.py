@@ -6,11 +6,11 @@ from .PlayingCard import RANK_A
 
 
 class Blackjack(Game):
-    DEALER_NAME = "DEALER"
+    DEALER_NAME = "DEALER"  # Yeah, he's a pretty cool dude!
 
-    def __init__(self, num_players=1):
+    def __init__(self, num_players=1, decks=6):
         """
-        A game of Blackjack, with a Dealer playing with N players
+        Blackjack, with a Dealer playing with N players
 
         :param int num_players: Number of players
         """
@@ -19,11 +19,12 @@ class Blackjack(Game):
         self.debug = True  # Show some more info
 
         # Supposed to be always 6 decks in Blackjack ??
-        self.deck = PlayingCardPile(full_decks=6)
+        self.deck = PlayingCardPile(full_decks=decks)
         self.deck.shuffle()
 
         self.dealer = PlayingCardsPlayer(self.DEALER_NAME)
 
+        # Init all players
         for player in range(num_players):
             self.players.append(PlayingCardsPlayer(str(player)))
 
@@ -42,6 +43,7 @@ class Blackjack(Game):
         # ... and finally a hidden one for the dealer
         self.dealer.hand.add(self.deck.take(1, visible=False))
 
+        # If in debug mode, show the initial hands
         if self.debug:
             print("Dealer's first cards : {}".format(str(self.dealer.hand)))
             for player in self.players:
@@ -78,8 +80,12 @@ class Blackjack(Game):
             self.dealer.hand.add(self.deck.take(1))
             self._print_hand_and_score(self.dealer)
 
+        self._check_wins()
+
+    def _check_wins(self):
         # Check if the dealer busted, then the players, to know who won or lost
         dealer_final_score = self.eval_score(self.dealer.hand)
+
         if dealer_final_score > 21:
             dealer_final_score = 0
             print("\nDealer busted, all surviving players win!\n")
@@ -95,7 +101,8 @@ class Blackjack(Game):
                       player.name, self.eval_score(player.hand)))
 
     def _print_hand_and_score(self, player):  # pragma: no cover
-        print("\nPlayer '{}', your hand is : {}".format(player.name, str(player.hand)))
+        print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
+              player.name, player.cash, str(player.hand)))
         print("Your hand is worth {} points.".format(self.eval_score(player.hand)))
 
     @staticmethod
