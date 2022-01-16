@@ -28,7 +28,7 @@ class Blackjack(Game):
             self.players.append(PlayingCardsPlayer(str(player)))
 
     def console_setup(self):
-        # Init and draw 1 card for each player,
+        # Draw 1 card for each player,
         for player in self.players:
             player.hand.add(self.deck.take(1))
 

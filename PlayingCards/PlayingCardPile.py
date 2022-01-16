@@ -6,7 +6,7 @@ from .PlayingCard import PlayingCard, STD_RANKS_SEQUENCE, SUITS_LIST
 class PlayingCardPile(EntityGroup):
     def __init__(self, full_decks=0, jokers=0):
         """
-        A French-style playing card pile.
+        A "French-style" playing card pile.
 
         Can be automatically filled with a number of decks, each having a number of Jokers.
 
