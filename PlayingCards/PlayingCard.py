@@ -58,7 +58,7 @@ class PlayingCard(Entity):
                     rank = "J"
                 elif self.rank == RANK_QUEEN:
                     rank = "Q"
-                elif self.rank == RANK_QUEEN:
+                elif self.rank == RANK_KING:
                     rank = "K"
                 elif self.rank == RANK_A:
                     rank = "A"

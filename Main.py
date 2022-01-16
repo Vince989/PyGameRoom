@@ -21,7 +21,7 @@ def main():
             blackjack = Blackjack(int(input("How many are playing? ")))
             blackjack.console_setup()
             blackjack.play_console()
-            if input("Want to do another round? ").lower()[0] != "y":
+            if input("\nWant to do another round? ").lower()[0] != "y":
                 break
 
         if choice == "quit":

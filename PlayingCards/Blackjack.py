@@ -88,7 +88,7 @@ class Blackjack(Game):
 
         if dealer_final_score > 21:
             dealer_final_score = 0
-            print("\nDealer busted, all surviving players win!\n")
+            print("\nDealer busted, all remaining players win!\n")
         else:
             print("\nDealer didn't bust, let's see who won...\n")
 
