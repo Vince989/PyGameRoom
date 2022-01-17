@@ -70,4 +70,4 @@ class PlayingCard(Entity):
 
                 return color + rank + " " + self.suit + console_colors.ENDC
         else:
-            return "(face down)"
+            return "(hidden)"
