@@ -16,8 +16,6 @@ class Blackjack(Game):
         """
         super().__init__()
 
-        self.debug = True  # Show some more info
-
         # Supposed to be always 6 decks in Blackjack ??
         self.deck = PlayingCardPile(full_decks=decks)
         self.deck.shuffle()
@@ -28,7 +26,7 @@ class Blackjack(Game):
         for player in range(num_players):
             self.players.append(PlayingCardsPlayer(str(player)))
 
-    def console_setup(self):
+    def setup(self):
         # Draw 1 card for each player,
         for player in self.players:
             player.hand.add(self.deck.take(1))
@@ -43,13 +41,12 @@ class Blackjack(Game):
         # ... and finally a hidden one for the dealer
         self.dealer.hand.add(self.deck.take(1, visible=False))
 
-        # If in debug mode, show the initial hands
-        if self.debug:
-            print("Dealer's first cards : {}".format(str(self.dealer.hand)))
-            for player in self.players:
-                print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
+        # Print() the initial hands
+        print("Dealer's first cards : {}".format(str(self.dealer.hand)))
+        for player in self.players:
+            print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
-    def play_console(self):
+    def play(self):
         # Ask every player if they want more cards (hit), or to "stand" in place
         for player in self.players:
             choice = ""
@@ -63,7 +60,7 @@ class Blackjack(Game):
                     self._print_hand_and_score(player)
                     player_score = self.eval_score(player.hand)
 
-                    if player_score > 21:
+                    if player_score == 0:
                         player.active = False
                         print("Player '{}' BUSTED.".format(player.name))
 
@@ -80,25 +77,30 @@ class Blackjack(Game):
             self.dealer.hand.add(self.deck.take(1))
             self._print_hand_and_score(self.dealer)
 
-        self._check_wins()
-
-    def _check_wins(self):
+    def finish(self):
         # Check if the dealer busted, then the players, to know who won or lost
         dealer_final_score = self.eval_score(self.dealer.hand)
 
         if dealer_final_score > 21:
-            dealer_final_score = 0
+            self.dealer.active = False
             print("\nDealer busted, all remaining players win!\n")
         else:
             print("\nDealer didn't bust, let's see who won...\n")
 
         for player in self.players:
-            if player.active and self.eval_score(player.hand) >= dealer_final_score:
+            if self._player_won(player):
                 print("Player '{}' wins with {} points! {}".format(
                       player.name, self.eval_score(player.hand), player.hand))
             else:
                 print("Player '{}' loses at {} points... {}".format(
                       player.name, self.eval_score(player.hand), player.hand))
+
+    def _player_won(self, player):
+        # The player must not have busted,
+        # and either have a higher score than the dealer, or the dealer has busted
+        return player.active and \
+               (not self.dealer.active or
+                self.eval_score(player.hand) >= self.eval_score(self.dealer.hand))
 
     def _print_hand_and_score(self, player):  # pragma: no cover
         print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(

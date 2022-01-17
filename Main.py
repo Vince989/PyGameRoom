@@ -19,8 +19,10 @@ def main():
         while choice == "blackjack":
             print("\nNew Blackjack round...")
             blackjack = Blackjack(int(input("How many are playing? ")))
-            blackjack.console_setup()
-            blackjack.play_console()
+            blackjack.setup()
+            blackjack.play()
+            blackjack.finish()
+
             if input("\nWant to do another round? ").lower()[0] != "y":
                 break
 
@@ -37,7 +39,8 @@ if __name__ == "__main__":
         if sys.argv[1] == "blackjack":
             players = 2
             cmd_blackjack = Blackjack(players)
-            cmd_blackjack.console_setup()
-            cmd_blackjack.play_console()
+            cmd_blackjack.setup()
+            cmd_blackjack.play()
+            cmd_blackjack.finish()
     else:
         main()
