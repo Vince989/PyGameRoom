@@ -94,11 +94,11 @@ class Blackjack(Game):
 
         for player in self.players:
             if player.active and self.eval_score(player.hand) >= dealer_final_score:
-                print("Player '{}' wins with {} points!".format(
-                      player.name, self.eval_score(player.hand)))
+                print("Player '{}' wins with {} points! {}".format(
+                      player.name, self.eval_score(player.hand), player.hand))
             else:
-                print("Player '{}' loses at {} points...".format(
-                      player.name, self.eval_score(player.hand)))
+                print("Player '{}' loses at {} points... {}".format(
+                      player.name, self.eval_score(player.hand), player.hand))
 
     def _print_hand_and_score(self, player):  # pragma: no cover
         print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
