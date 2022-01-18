@@ -3,12 +3,11 @@ from ..EntityGroup import EntityGroup
 from ..Entity import Entity
 
 
-# noinspection PyPep8Naming
-def test_EntityGroup():
+def test_entitygroup_init():
     entity_group = EntityGroup()
     assert entity_group
 
-    assert entity_group.shuffle() is None  # Pass-through should work but return nothing
+    assert entity_group.shuffle() is None  # A pass-through, should work but return nothing
 
 
 def test_add():

@@ -2,8 +2,7 @@
 from ..PlayingCardPile import PlayingCardPile
 
 
-# noinspection PyPep8Naming
-def test_PlayingCardPile():
+def test_playingcardpile_init():
     # Test creating various card piles
     deck_size = 13 * 4
 

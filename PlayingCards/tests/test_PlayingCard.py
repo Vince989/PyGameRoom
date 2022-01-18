@@ -3,8 +3,7 @@ from ..PlayingCard import PlayingCard, SUIT_NONE, RANK_NONE, \
     SUIT_CLUBS, RANK_10, RANK_A, SUIT_SPADES
 
 
-# noinspection PyPep8Naming
-def test_PlayingCard():
+def test_playingcard_init():
     # Create and test a few cards...
     card = PlayingCard(SUIT_CLUBS, RANK_10)
     assert card.suit == SUIT_CLUBS

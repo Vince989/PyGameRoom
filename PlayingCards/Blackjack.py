@@ -96,11 +96,17 @@ class Blackjack(Game):
                       player.name, self.eval_score(player.hand), player.hand))
 
     def _player_won(self, player):
-        # The player must not have busted,
-        # and either have a higher score than the dealer, or the dealer has busted
+        """
+        For a win in Blackjack, the player must not have busted,
+        and either have a higher score than the Dealer, or the Dealer has busted
+
+        :param PlayingCardsPlayer player: a Blackjack Player
+        :return: if said player won against the Dealer
+        :rtype: bool
+        """
         return player.active and \
-               (not self.dealer.active or
-                self.eval_score(player.hand) >= self.eval_score(self.dealer.hand))
+            (not self.dealer.active or
+             self.eval_score(player.hand) >= self.eval_score(self.dealer.hand))
 
     def _print_hand_and_score(self, player):  # pragma: no cover
         print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(

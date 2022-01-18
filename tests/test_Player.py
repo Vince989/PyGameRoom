@@ -2,10 +2,11 @@
 from Player import Player
 
 
-# noinspection PyPep8Naming
-def test_Player():
-    player = Player("THIS IS A TEST")
-    assert player  # TODO Improve
+def test_player_init():
+    player_name = "THIS_IS_A_TEST"
+    player = Player(player_name)
+    assert player.name == player_name
+    assert player.active
 
 
 def test_wagers():

@@ -10,8 +10,22 @@ from ..PlayingCard import PlayingCard, \
 def test_blackjack_init():
     players = 5
     blackjack = Blackjack(players)
-    assert len(blackjack.players) == players  # TODO Make better checks
+    assert len(blackjack.players) == players
     assert blackjack.dealer.name == Blackjack.DEALER_NAME
+
+
+def test_blackjack_setup():
+    players = 2
+    blackjack = Blackjack(players)
+    blackjack.setup()
+
+    assert len(blackjack.dealer.hand.items) == 2
+
+    # Dealer's 2nd card shouldn't be visible at first
+    assert not blackjack.dealer.hand.items[1].visible
+
+    for player in range(players):
+        assert len(blackjack.players[player].hand.items) == 2
 
 
 def test_eval_score():
@@ -42,6 +56,7 @@ def test_dealer_wins():
 # UTILITY FUNCTIONS
 
 def _blackjack_hand():
+    """ Worth 21 """
     hand = PlayingCardPile()
     hand.add(PlayingCard(suit=SUIT_SPADES, rank=RANK_A))
     hand.add(PlayingCard(suit=SUIT_CLUBS, rank=RANK_10))
@@ -49,6 +64,7 @@ def _blackjack_hand():
 
 
 def _bad_hand():
+    """ Worth 12 """
     hand = PlayingCardPile()
     hand.add(PlayingCard(suit=SUIT_HEARTS, rank=RANK_2))
     hand.add(PlayingCard(suit=SUIT_DIAMONDS, rank=RANK_QUEEN))

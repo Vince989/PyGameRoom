@@ -2,7 +2,6 @@
 from ..Entity import Entity
 
 
-# noinspection PyPep8Naming
-def test_EntityInit():
+def test_entity_init():
     entity = Entity()
-    assert entity  # TODO Improve
+    assert entity  # Shall be improved as more functionality is added to it
