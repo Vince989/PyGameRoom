@@ -41,6 +41,11 @@ def test_eval_score():
     player.hand.add(PlayingCard(SUIT_HEARTS, RANK_QUEEN))
     assert Blackjack.eval_score(player.hand) == 21  # Blackjack case
 
+    # ... Then the player busts!
+    player.hand.add(PlayingCard(SUIT_DIAMONDS, RANK_2))
+    player.hand.add(PlayingCard(SUIT_CLUBS, RANK_10))
+    assert Blackjack.eval_score(player.hand) == 23
+
 
 def test_dealer_wins():
     blackjack = Blackjack(2)

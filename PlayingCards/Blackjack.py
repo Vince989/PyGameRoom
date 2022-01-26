@@ -7,6 +7,7 @@ from .PlayingCard import RANK_A
 
 class Blackjack(Game):
     DEALER_NAME = "DEALER"  # Yeah, he's a pretty cool dude!
+    MAX_SCORE = 21
 
     def __init__(self, num_players=1, decks=6):
         """
@@ -41,30 +42,30 @@ class Blackjack(Game):
         # ... and finally a hidden one for the dealer
         self.dealer.hand.add(self.deck.take(1, visible=False))
 
+    def play(self):
         # Print() the initial hands
         print("Dealer's first cards : {}".format(str(self.dealer.hand)))
         for player in self.players:
             print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
-    def play(self):
         # Ask every player if they want more cards (hit), or to "stand" in place
         for player in self.players:
             choice = ""
             self._print_hand_and_score(player)
             player_score = self.eval_score(player.hand)
 
-            while (player_score < 21) and (choice not in ["stand"]):
+            while (player_score < self.MAX_SCORE) and (choice not in ["stand"]):
                 choice = input("What do you wanna do? (hit/stand) : ").lower()
                 if choice == "hit":
                     player.hand.add(self.deck.take(1))
                     self._print_hand_and_score(player)
                     player_score = self.eval_score(player.hand)
 
-                    if player_score == 0:
+                    if player_score > self.MAX_SCORE:
                         player.active = False
                         print("Player '{}' BUSTED.".format(player.name))
 
-            if player_score == 21:  # Blackjack or equivalent
+            if player_score == self.MAX_SCORE:  # Blackjack or equivalent
                 print("Player '{}' will WIN, 21, baby!".format(player.name))
 
         # Then flip over dealer's 2nd card,
@@ -81,7 +82,7 @@ class Blackjack(Game):
         # Check if the dealer busted, then the players, to know who won or lost
         dealer_final_score = self.eval_score(self.dealer.hand)
 
-        if dealer_final_score > 21:
+        if dealer_final_score > self.MAX_SCORE:
             self.dealer.active = False
             print("\nDealer busted, all remaining players win!\n")
         else:
