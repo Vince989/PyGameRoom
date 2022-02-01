@@ -9,14 +9,14 @@ from ..PlayingCard import PlayingCard, \
 
 def test_blackjack_init():
     players = 5
-    blackjack = Blackjack(players)
+    blackjack = Blackjack(num_players=players)
     assert len(blackjack.players) == players
     assert blackjack.dealer.name == Blackjack.DEALER_NAME
 
 
 def test_blackjack_setup():
     players = 2
-    blackjack = Blackjack(players)
+    blackjack = Blackjack(num_players=players)
     blackjack.setup()
 
     assert len(blackjack.dealer.hand.items) == 2
@@ -48,7 +48,7 @@ def test_eval_score():
 
 
 def test_dealer_wins():
-    blackjack = Blackjack(2)
+    blackjack = Blackjack(num_players=2)
     blackjack.dealer.hand = _blackjack_hand()
 
     blackjack.players[0].hand = _bad_hand()

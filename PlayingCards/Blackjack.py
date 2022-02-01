@@ -9,13 +9,17 @@ class Blackjack(Game):
     DEALER_NAME = "DEALER"  # Yeah, he's a pretty cool dude!
     MAX_SCORE = 21
 
-    def __init__(self, num_players=1, decks=6):
+    def __init__(self, console=True, num_players=1, decks=6):
         """
         Blackjack, with a Dealer playing with N players
 
+        :param bool console: Console mode or graphical
         :param int num_players: Number of players
+        :param int decks: Number of card decks to be shuffled in the "heel"
         """
         super().__init__()
+
+        self.console = console
 
         # Supposed to be always 6 decks in Blackjack ??
         self.deck = PlayingCardPile(full_decks=decks)
@@ -43,30 +47,15 @@ class Blackjack(Game):
         self.dealer.hand.add(self.deck.take(1, visible=False))
 
     def play(self):
-        # Print() the initial hands
-        print("Dealer's first cards : {}".format(str(self.dealer.hand)))
-        for player in self.players:
-            print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
+        if self.console:
+            # Print() the initial hands
+            print("Dealer's first cards : {}".format(str(self.dealer.hand)))
+            for player in self.players:
+                print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
-        # Ask every player if they want more cards (hit), or to "stand" in place
-        for player in self.players:
-            choice = ""
-            self._print_hand_and_score(player)
-            player_score = self.eval_score(player.hand)
-
-            while (player_score < self.MAX_SCORE) and (choice not in ["stand"]):
-                choice = input("What do you wanna do? (hit/stand) : ").lower()
-                if choice == "hit":
-                    player.hand.add(self.deck.take(1))
-                    self._print_hand_and_score(player)
-                    player_score = self.eval_score(player.hand)
-
-                    if player_score > self.MAX_SCORE:
-                        player.active = False
-                        print("Player '{}' BUSTED.".format(player.name))
-
-            if player_score == self.MAX_SCORE:  # Blackjack or equivalent
-                print("Player '{}' will WIN, 21, baby!".format(player.name))
+            # Ask every player if they want more cards (hit), or to "stand" in place
+            for player in self.players:
+                self.console_player(player)
 
         # Then flip over dealer's 2nd card,
         self.dealer.hand.items[1].visible = True
@@ -77,6 +66,24 @@ class Blackjack(Game):
             print("Dealer grabs another card...")
             self.dealer.hand.add(self.deck.take(1))
             self._print_hand_and_score(self.dealer)
+
+    def console_player(self, player):
+        choice = ""
+        self._print_hand_and_score(player)
+        player_score = self.eval_score(player.hand)
+
+        while (player_score < self.MAX_SCORE) and (choice not in ["stand"]):
+            choice = input("What do you wanna do? (hit/stand) : ").lower()
+            if choice == "hit":
+                player.hand.add(self.deck.take(1))
+                self._print_hand_and_score(player)
+                player_score = self.eval_score(player.hand)
+
+                if player_score > self.MAX_SCORE:
+                    player.active = False
+                    print("Player '{}' BUSTED.".format(player.name))
+        if player_score == self.MAX_SCORE:  # Blackjack or equivalent
+            print("Player '{}' will WIN, 21, baby!".format(player.name))
 
     def finish(self):
         # Check if the dealer busted, then the players, to know who won or lost
