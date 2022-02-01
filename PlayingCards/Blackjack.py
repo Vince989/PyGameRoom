@@ -125,7 +125,8 @@ class Blackjack(Game):
     def _print_hand_and_score(self, player):  # pragma: no cover
         print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
               player.name, player.cash, str(player.hand)))
-        print("Your hand is worth {} points.".format(self.eval_score(player.hand)))
+        print("Player '{}' hand is worth {} points.".format(player.name,
+                                                            self.eval_score(player.hand)))
 
     @staticmethod
     def eval_score(player):
