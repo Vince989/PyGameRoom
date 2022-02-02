@@ -31,16 +31,16 @@ def test_blackjack_setup():
 
 def test_blackjack_play():
     players = NUM_PLAYERS
-    blackjack = Blackjack(num_players=players)
-    blackjack.console = False
+    blackjack = Blackjack(console=False, num_players=players)
     blackjack.setup()
-
-    blackjack.dealer.hand = _bad_hand()
+    blackjack.dealer.hand = _bad_hand()  # Setup the base game, then override the dealer's hand
     blackjack.dealer.hand.items[1].visible = False
     assert not blackjack.dealer.hand.items[1].visible  # The 2nd card should be hidden
 
     blackjack.play()
     assert blackjack.dealer.hand.items[1].visible  # The 2nd card should be flipped now
+    for player in blackjack.players:
+        assert len(player.hand.items) == 2
 
 
 def test_eval_score():
