@@ -7,6 +7,7 @@ from .PlayingCard import RANK_A
 
 class Blackjack(Game):
     DEALER_NAME = "DEALER"  # Yeah, he's a pretty cool dude!
+    DEALER_DRAW_LIMIT = 17
     MAX_SCORE = 21
 
     def __init__(self, console=True, num_players=1, decks=6):
@@ -54,11 +55,11 @@ class Blackjack(Game):
             for player in self.players:
                 print("Player '{}' 's initial hand : {}".format(player.name, str(player.hand)))
 
-            # Ask every player if they want more cards (hit), or to "stand" in place
+            # Ask every player if they want more cards (to hit), or to "stand" in place
             for player in self.players:
                 self.console_player(player)
         else:
-            pass
+            pass  # Do nothing for now, will be done later
 
         # DEALER'S PART #
         # Then flip over dealer's 2nd card,
@@ -66,7 +67,7 @@ class Blackjack(Game):
         self._print_hand_and_score(self.dealer)
 
         # ... and then draw more cards while its score is under 17
-        while self.eval_score(self.dealer.hand) < 17:
+        while self.eval_score(self.dealer.hand) < self.DEALER_DRAW_LIMIT:
             if self.console:
                 print("Dealer grabs another card...")
             self.dealer.hand.add(self.deck.take(1))
@@ -91,7 +92,7 @@ class Blackjack(Game):
         if player_score == self.MAX_SCORE:  # Blackjack or equivalent
             print("Player '{}' will WIN, 21, baby!".format(player.name))
 
-    def finish(self):
+    def console_finish(self):
         # Check if the dealer busted, then the players, to know who won or lost
         dealer_final_score = self.eval_score(self.dealer.hand)
 
@@ -123,10 +124,11 @@ class Blackjack(Game):
              self.eval_score(player.hand) >= self.eval_score(self.dealer.hand))
 
     def _print_hand_and_score(self, player):  # pragma: no cover
-        print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
-              player.name, player.cash, str(player.hand)))
-        print("Player '{}', your hand is worth {} points.".format(player.name,
-                                                                  self.eval_score(player.hand)))
+        if self.console:
+            print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
+                  player.name, player.cash, str(player.hand)))
+            print("Player '{}', your hand is worth {} points.".format(player.name,
+                                                                      self.eval_score(player.hand)))
 
     @staticmethod
     def eval_score(player):

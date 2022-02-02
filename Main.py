@@ -21,7 +21,7 @@ def main():
             blackjack = Blackjack(num_players=int(input("How many are playing? ")))
             blackjack.setup()
             blackjack.play()
-            blackjack.finish()
+            blackjack.console_finish()
 
             if input("\nWant to do another round? ").lower()[0] != "y":
                 break
@@ -41,6 +41,6 @@ if __name__ == "__main__":
             cmd_blackjack = Blackjack(num_players=players)
             cmd_blackjack.setup()
             cmd_blackjack.play()
-            cmd_blackjack.finish()
+            cmd_blackjack.console_finish()
     else:
         main()
