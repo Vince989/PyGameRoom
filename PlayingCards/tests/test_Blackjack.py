@@ -20,7 +20,6 @@ def test_blackjack_setup():
     players = NUM_PLAYERS
     blackjack = Blackjack(num_players=players)
     blackjack.setup()
-
     assert len(blackjack.dealer.hand.items) == 2
 
     # Dealer's 2nd card shouldn't be visible at first
@@ -41,8 +40,7 @@ def test_blackjack_play():
     assert not blackjack.dealer.hand.items[1].visible  # The 2nd card should be hidden
 
     blackjack.play()
-
-    assert blackjack.dealer.hand.items[1].visible  # The 2nd card should be flipped
+    assert blackjack.dealer.hand.items[1].visible  # The 2nd card should be flipped now
 
 
 def test_eval_score():
