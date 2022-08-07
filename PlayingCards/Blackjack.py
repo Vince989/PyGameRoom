@@ -135,14 +135,16 @@ class Blackjack(Game):
         aces = 0
         tens = 0
 
-        # Remember it if there's at least an Ace, and "ceil off" the Faces
+        # Remember it if there's at least an Ace, and "ceil off" the Faces' in the score counting
         for card in player.items:
             if card.rank == RANK_A:
                 aces += 1
+
             if card.rank >= 10:
-                card.rank = 10
+                score += 10
                 tens += 1
-            score += card.rank
+            else:
+                score += card.rank
 
         if len(player.items) == 2 and aces and tens:  # Blackjack!
             score = 21
