@@ -1,6 +1,6 @@
-TODO Write some sort of Readme
-
 PyGameRoom
+
+TODO: Write some sort of Readme
 
 (...)
 

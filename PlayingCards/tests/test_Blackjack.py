@@ -33,7 +33,7 @@ def test_blackjack_play():
     players = NUM_PLAYERS
     blackjack = Blackjack(console=False, num_players=players)
     blackjack.setup()
-    blackjack.dealer.hand = _bad_hand()  # Setup the base game, then override the dealer's hand
+    blackjack.dealer.hand = _bad_hand()  # Set up the base game, then override the dealer's hand
     blackjack.dealer.hand.items[1].visible = False
     assert not blackjack.dealer.hand.items[1].visible  # The 2nd card should be hidden
 

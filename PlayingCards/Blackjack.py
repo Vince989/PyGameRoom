@@ -22,7 +22,6 @@ class Blackjack(Game):
 
         self.console = console
 
-        # Supposed to be always 6 decks in Blackjack ??
         self.deck = PlayingCardPile(full_decks=decks)
         self.deck.shuffle()
 
