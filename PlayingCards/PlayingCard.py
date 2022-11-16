@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Entity import Entity
-from __init__ import ConsoleColors
+from ConsoleColors import ConsoleColors
 
 # Unicode characters from : https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
 SUIT_CLUBS = "♧"  # ♣ ♧
