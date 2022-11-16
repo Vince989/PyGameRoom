@@ -61,14 +61,15 @@ class Blackjack(Game):
             pass  # Do nothing for now, will be done later
 
         # DEALER'S PART #
-        # Then flip over dealer's 2nd card,
+        # Reveal the dealer's 2nd card,
         self.dealer.hand.items[1].visible = True
-        self._print_hand_and_score(self.dealer)
+        if self.console:
+            self._print_hand_and_score(self.dealer)
 
         # ... and then draw more cards while its score is under 17
         while self.eval_score(self.dealer.hand) < self.DEALER_DRAW_LIMIT:
             if self.console:
-                print("Dealer grabs another card...")
+                input("Dealer grabs another card...")
             self.dealer.hand.add(self.deck.take(1))
             self._print_hand_and_score(self.dealer)
 
@@ -86,10 +87,10 @@ class Blackjack(Game):
 
                 if player_score > self.MAX_SCORE:
                     player.active = False
-                    print("Player '{}' BUSTED.".format(player.name))
+                    input("Player '{}' BUSTED.".format(player.name))
 
         if player_score == self.MAX_SCORE:  # Blackjack or equivalent
-            print("Player '{}' will WIN, 21, baby!".format(player.name))
+            input("Player '{}' will WIN, 21, baby!".format(player.name))
 
     def console_finish(self):
         # Check if the dealer busted, then the players, to know who won or lost
@@ -97,9 +98,9 @@ class Blackjack(Game):
 
         if dealer_final_score > self.MAX_SCORE:
             self.dealer.active = False
-            print("\nDealer busted, all remaining players win!\n")
+            input("\nDealer busted, all remaining players win!\n")
         else:
-            print("\nDealer didn't bust, let's see who won...\n")
+            input("\nDealer didn't bust, let's see who won...\n")
 
         for player in self.players:
             if self._player_won(player):
@@ -125,9 +126,11 @@ class Blackjack(Game):
     def _print_hand_and_score(self, player):  # pragma: no cover
         if self.console:
             print("\nPlayer '{}', you have {} tokens, and your hand is : {}".format(
-                  player.name, player.cash, str(player.hand)))
-            print("Player '{}', your hand is worth {} points.".format(player.name,
-                                                                      self.eval_score(player.hand)))
+                    player.name, player.cash, str(player.hand)))
+            print("Player '{}', your hand is worth {} points.".format(
+                    player.name, self.eval_score(player.hand)))
+        else:
+            pass  # Might handle graphical status box here, TBD...
 
     @staticmethod
     def eval_score(player):
