@@ -12,21 +12,28 @@ def test_entitygroup_init():
 
 def test_add():
     entity_group = EntityGroup()
-    amount = 10
-    for i in range(amount):  # Generate 10 items
+    amount = 5
+    for i in range(amount):  # Generate (amount) items
         new_entity = Entity()
         entity_group.add(new_entity)
+
     assert len(entity_group.items) == amount
 
 
 def test_take():
     entity_group = EntityGroup()
-    amount = 10
-    for i in range(amount):  # Generate 10 items
+
+    amount = 5
+    take = 3
+    assert take <= amount
+
+    for i in range(amount):  # Generate (amount) items
         new_entity = Entity()
         entity_group.add(new_entity)
 
     taken = []
-    for j in range(3):
+    for j in range(take):
         taken.append(entity_group.take())
-    assert len(taken) == 3
+
+    assert len(taken) == take
+    assert len(entity_group.items) == amount - take
