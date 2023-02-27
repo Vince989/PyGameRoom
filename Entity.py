@@ -9,5 +9,3 @@ class Entity(object):
         :param bool visible: If the entity should be visible to all
         """
         self.visible = visible
-
-    # To complete as needed...

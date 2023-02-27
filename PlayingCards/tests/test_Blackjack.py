@@ -6,32 +6,32 @@ from ..PlayingCard import PlayingCard, \
     SUIT_DIAMONDS, RANK_2, SUIT_SPADES, RANK_A, \
     SUIT_CLUBS, RANK_10, SUIT_HEARTS, RANK_QUEEN
 
+# CONSTANTS, "Magic" numbers
 NUM_PLAYERS = 2
+MIN_CARDS = 2
 
 
 def test_blackjack_init():
-    players = NUM_PLAYERS
-    blackjack = Blackjack(num_players=players)
-    assert len(blackjack.players) == players
+    blackjack = Blackjack(num_players=NUM_PLAYERS)
+    assert len(blackjack.players) == NUM_PLAYERS
     assert blackjack.dealer.name == Blackjack.DEALER_NAME
 
 
 def test_blackjack_setup():
-    players = NUM_PLAYERS
-    blackjack = Blackjack(num_players=players)
+    blackjack = Blackjack(num_players=NUM_PLAYERS)
     blackjack.setup()
-    assert len(blackjack.dealer.hand.items) == 2
+
+    assert len(blackjack.dealer.hand.items) == MIN_CARDS
 
     # Dealer's 2nd card shouldn't be visible at first
     assert not blackjack.dealer.hand.items[1].visible
 
-    for player in range(players):
-        assert len(blackjack.players[player].hand.items) == 2
+    for player in range(NUM_PLAYERS):
+        assert len(blackjack.players[player].hand.items) == MIN_CARDS
 
 
 def test_blackjack_play():
-    players = NUM_PLAYERS
-    blackjack = Blackjack(console=False, num_players=players)
+    blackjack = Blackjack(console=False, num_players=NUM_PLAYERS)  # TODO Fix console=False
     blackjack.setup()
     blackjack.dealer.hand = _bad_hand()  # Set up the base game, then override the dealer's hand
     blackjack.dealer.hand.items[1].visible = False
@@ -39,8 +39,9 @@ def test_blackjack_play():
 
     blackjack.play()
     assert blackjack.dealer.hand.items[1].visible  # The 2nd card should be flipped now
+
     for player in blackjack.players:
-        assert len(player.hand.items) == 2
+        assert len(player.hand.items) == MIN_CARDS
 
 
 def test_eval_score():
@@ -63,7 +64,7 @@ def test_eval_score():
 
 
 def test_dealer_wins():
-    blackjack = Blackjack(num_players=2)
+    blackjack = Blackjack(num_players=NUM_PLAYERS)
     blackjack.dealer.hand = _blackjack_hand()
 
     blackjack.players[0].hand = _bad_hand()

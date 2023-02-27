@@ -94,9 +94,7 @@ class Blackjack(Game):
 
     def console_finish(self):
         # Check if the dealer busted, then the players, to know who won or lost
-        dealer_final_score = self.eval_score(self.dealer.hand)
-
-        if dealer_final_score > self.MAX_SCORE:
+        if self.eval_score(self.dealer.hand) > self.MAX_SCORE:
             self.dealer.active = False
             input("\nDealer busted, all remaining players win!\n")
         else:
