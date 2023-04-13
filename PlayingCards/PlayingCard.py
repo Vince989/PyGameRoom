@@ -65,8 +65,13 @@ class PlayingCard(Entity):
                 else:
                     rank = str(self.rank)
 
-                if self.suit in SUIT_COLOR_RED:
+                # if self.suit in SUIT_COLOR_RED:
+                if self.suit is SUIT_HEARTS:
                     color = ConsoleColors.RED
+                elif self.suit is SUIT_DIAMONDS:
+                    color = ConsoleColors.BLUE
+                elif self.suit is SUIT_SPADES:
+                    color = ConsoleColors.GREEN
 
                 return color + rank + " " + self.suit + ConsoleColors.ENDC
         else:
