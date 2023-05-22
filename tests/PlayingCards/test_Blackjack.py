@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from src.PlayingCards.Blackjack import Blackjack
-from src.PlayingCards.PlayingCardsPlayer import PlayingCardsPlayer
-from src.PlayingCards.PlayingCardPile import PlayingCardPile
-from src.PlayingCards.PlayingCard import PlayingCard, \
+from src.PyGameRoom.PlayingCards.Blackjack import Blackjack
+from src.PyGameRoom.PlayingCards.PlayingCardsPlayer import PlayingCardsPlayer
+from src.PyGameRoom.PlayingCards.PlayingCardPile import PlayingCardPile
+from src.PyGameRoom.PlayingCards.PlayingCard import PlayingCard, \
     SUIT_DIAMONDS, RANK_2, SUIT_SPADES, RANK_A, \
     SUIT_CLUBS, RANK_10, SUIT_HEARTS, RANK_QUEEN
 

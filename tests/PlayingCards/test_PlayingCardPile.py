@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from src.PlayingCards.PlayingCardPile import PlayingCardPile
+from src.PyGameRoom.PlayingCards.PlayingCardPile import PlayingCardPile
 
 
 def test_playingcardpile_init():

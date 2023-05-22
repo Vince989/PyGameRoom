@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from src.Game import Game
+from src.PyGameRoom.Game import Game
 
 
 def test_game_init():

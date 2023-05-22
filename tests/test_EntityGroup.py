@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from src.EntityGroup import EntityGroup
-from src.Entity import Entity
+from src.PyGameRoom.EntityGroup import EntityGroup
+from src.PyGameRoom.Entity import Entity
 
 
 def test_entitygroup_init():

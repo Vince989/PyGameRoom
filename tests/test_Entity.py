@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from src.Entity import Entity
+from PyGameRoom.Entity import Entity
 
 
 def test_entity_init():
