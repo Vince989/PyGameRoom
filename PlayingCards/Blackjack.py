@@ -58,7 +58,7 @@ class Blackjack(Game):
             for player in self.players:
                 self.console_player(player)
         else:
-            pass  # Do nothing for now, will be done later
+            pass  # TODO Do nothing for now, will be done later
 
         # DEALER'S PART #
         # Reveal the dealer's 2nd card,
