@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from ..EntityGroup import EntityGroup
-from ..Entity import Entity
+from src.EntityGroup import EntityGroup
+from src.Entity import Entity
 
 
 def test_entitygroup_init():

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from ..PlayingCard import PlayingCard, SUIT_NONE, RANK_NONE, \
+from src.PlayingCards.PlayingCard import \
+    PlayingCard, SUIT_NONE, RANK_NONE, \
     SUIT_CLUBS, RANK_10, RANK_A, SUIT_SPADES
 
 

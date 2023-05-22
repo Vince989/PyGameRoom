@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Player import Player
+from src.Player import Player
 
 
 def test_player_init():

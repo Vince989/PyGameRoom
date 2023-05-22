@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..Entity import Entity
+from src.Entity import Entity
 
 
 def test_entity_init():

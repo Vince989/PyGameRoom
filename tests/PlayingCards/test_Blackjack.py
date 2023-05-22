@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from ..Blackjack import Blackjack
-from ..PlayingCardsPlayer import PlayingCardsPlayer
-from ..PlayingCardPile import PlayingCardPile
-from ..PlayingCard import PlayingCard, \
+from src.PlayingCards.Blackjack import Blackjack
+from src.PlayingCards.PlayingCardsPlayer import PlayingCardsPlayer
+from src.PlayingCards.PlayingCardPile import PlayingCardPile
+from src.PlayingCards.PlayingCard import PlayingCard, \
     SUIT_DIAMONDS, RANK_2, SUIT_SPADES, RANK_A, \
     SUIT_CLUBS, RANK_10, SUIT_HEARTS, RANK_QUEEN
 

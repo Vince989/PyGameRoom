@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..Game import Game
+from src.Game import Game
 
 
 def test_game_init():
