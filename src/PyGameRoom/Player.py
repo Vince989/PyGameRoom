@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class Player(object):
-    def __init__(self, name, cash=1):
+    def __init__(self, name, cash=100):
         """
         Whichever game is played, this is where Players come from! ;)
 
@@ -9,9 +9,9 @@ class Player(object):
         :param int cash: How much money/tokens the Player has
         """
         self.name = name
-        self.active = True  # Basically, dead or alive.
         self.cash = cash
 
+        self.active = True  # Basically, dead or alive.
         self.bet = 0  # The Player's current bet
 
     def wager(self, amount):

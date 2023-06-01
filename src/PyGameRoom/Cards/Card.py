@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 from ..Entity import Entity
-# from .PlayingCard import PlayingCard, STD_RANKS_SEQUENCE, SUITS_LIST
 
 
 class Card(Entity):
     def __init__(self, visible=False):
         """
-        French-style playing cards
+        A generic card, can be french playing card, uno, skip bo, etc.
 
         :param bool visible: If the card is visible to others (face up?)
         """

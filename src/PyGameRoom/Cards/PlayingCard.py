@@ -12,6 +12,8 @@ SUIT_COLOR_RED = [SUIT_HEARTS, SUIT_DIAMONDS]
 SUIT_COLOR_BLACK = [SUIT_SPADES, SUIT_CLUBS]
 SUITS_LIST = [SUIT_CLUBS, SUIT_DIAMONDS, SUIT_HEARTS, SUIT_SPADES]
 
+HIDDEN = "(hidden)"
+
 RANK_A = 1
 RANK_2 = 2
 RANK_3 = 3
@@ -48,8 +50,7 @@ class PlayingCard(Card):
         self.rank = rank
         self.joker_id = joker_id
 
-    def __str__(self):  # pragma: no cover
-        color = ""
+    def __str__(self):  # pragma:  cover
         if self.visible:
             if self.joker_id:
                 return "Joker #" + str(self.joker_id)
@@ -65,7 +66,7 @@ class PlayingCard(Card):
                 else:
                     rank = str(self.rank)
 
-                # if self.suit in SUIT_COLOR_RED:
+                color = ""
                 if self.suit is SUIT_HEARTS:
                     color = ConsoleColors.RED
                 elif self.suit is SUIT_DIAMONDS:
@@ -75,4 +76,4 @@ class PlayingCard(Card):
 
                 return color + rank + " " + self.suit + ConsoleColors.ENDC
         else:
-            return "(hidden)"
+            return HIDDEN
