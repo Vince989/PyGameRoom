@@ -6,6 +6,6 @@ class Entity(object):
         """
         For shared functionality across cards/pieces/etc
 
-        :param bool visible: If the entity should be visible to all
+        :param bool visible: If the entity should be visible to others
         """
         self.visible = visible

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from ..Entity import Entity
+from .Card import Card
 from ..ConsoleColors import ConsoleColors
 
 # Unicode characters from : https://en.wikipedia.org/wiki/Playing_cards_in_Unicode
@@ -32,13 +32,13 @@ STD_RANKS_SEQUENCE = [RANK_A, RANK_2, RANK_3, RANK_4, RANK_5, RANK_6, RANK_7,
                       RANK_8, RANK_9, RANK_10, RANK_JACK, RANK_QUEEN, RANK_KING, ]
 
 
-class PlayingCard(Entity):
+class PlayingCard(Card):
     def __init__(self, suit=SUIT_NONE, rank=RANK_NONE, joker_id=0, visible=False):
         """
         French-style playing cards
 
         :param str suit: Spades, clubs, hearts, diamonds
-        :param str rank: A, 2, ... 9, 10, J, Q, K
+        :param str rank: A, 2, ... 9, 10, J, Q, K , or NONE
         :param int joker_id: If the card is a Joker, which "number" it is, otherwise 0
         :param bool visible: If the card is visible to others (face up)
         """

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-from PlayingCards.Blackjack import Blackjack
+from Cards.Blackjack import Blackjack
 
 MENU_CHOICES_LIST = ["quit", "poker", "blackjack"]
 
