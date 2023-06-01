@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from src.PyGameRoom.Game import Game
-from src.PyGameRoom.PlayingCards.PlayingCardsPlayer import PlayingCardsPlayer
-from src.PyGameRoom.PlayingCards.PlayingCardPile import PlayingCardPile
-from src.PyGameRoom.PlayingCards.PlayingCard import RANK_A
+from src.PyGameRoom.Cards.PlayingCardsPlayer import PlayingCardsPlayer
+from src.PyGameRoom.Cards.PlayingCardPile import PlayingCardPile
+from src.PyGameRoom.Cards.PlayingCard import RANK_A
 
 
 class Blackjack(Game):

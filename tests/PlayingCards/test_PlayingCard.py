@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from src.PyGameRoom.PlayingCards.PlayingCard import \
+from src.PyGameRoom.Cards.PlayingCard import \
     PlayingCard, SUIT_NONE, RANK_NONE, \
     SUIT_CLUBS, RANK_10, RANK_A, SUIT_SPADES
 
