@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from src.PyGameRoom.Game import Game
-from src.PyGameRoom.Cards.PlayingCardsPlayer import PlayingCardsPlayer
+from src.PyGameRoom.Cards.CardsPlayer import CardsPlayer
 from src.PyGameRoom.Cards.PlayingCardPile import PlayingCardPile
 from src.PyGameRoom.Cards.PlayingCard import RANK_A
 
@@ -25,11 +25,11 @@ class Blackjack(Game):
         self.deck = PlayingCardPile(full_decks=decks)
         self.deck.shuffle()
 
-        self.dealer = PlayingCardsPlayer(self.DEALER_NAME)
+        self.dealer = CardsPlayer(self.DEALER_NAME)
 
         # Init all players
         for player in range(num_players):
-            self.players.append(PlayingCardsPlayer(str(player)))
+            self.players.append(CardsPlayer(str(player)))
 
     def setup(self):
         # Draw 1 card for each player,
@@ -113,7 +113,7 @@ class Blackjack(Game):
         For a win in Blackjack, the player must not have busted,
         and either have a higher score than the Dealer, or the Dealer has busted
 
-        :param PlayingCardsPlayer player: a Blackjack Player
+        :param CardsPlayer player: a Blackjack Player
         :return: if said player won against the Dealer
         :rtype: bool
         """

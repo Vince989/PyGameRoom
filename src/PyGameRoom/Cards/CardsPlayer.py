@@ -3,7 +3,7 @@ from ..Player import Player
 from .PlayingCardPile import PlayingCardPile
 
 
-class PlayingCardsPlayer(Player):
+class CardsPlayer(Player):
     def __init__(self, name):
         """
         A Player playing a cards game.
