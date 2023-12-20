@@ -19,6 +19,6 @@ TODO: Write **some** *form* of Readme
 ## Markdown Tools :
 [Markdown Getting Started](https://www.markdownguide.org/getting-started/)
 
-[Dilinger Markdown Editor](https://dillinger.io/)
+[Dillinger Markdown Editor](https://dillinger.io/)
 
 [![Tests](https://github.com/Vince989/PyGameRoom/actions/workflows/tests.yml/badge.svg)](https://github.com/Vince989/PyGameRoom/actions/workflows/tests.yml)
