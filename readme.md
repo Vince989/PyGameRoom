@@ -2,7 +2,7 @@
 
 ## A flexible simulator for various table-top games.
 
-TODO: Write **some** *form* of Readme
+TODO: Write **some** *form* of Readme.
 
 (...)
 
