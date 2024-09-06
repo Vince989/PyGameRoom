@@ -1,2 +1,2 @@
-# when making changes, adjust setup.cfg too !
+# when making changes, adjust setup.cfg too!
 requests==2.26.0
