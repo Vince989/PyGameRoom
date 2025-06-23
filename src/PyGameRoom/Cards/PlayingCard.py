@@ -14,7 +14,7 @@ SUITS_LIST = [SUIT_CLUBS, SUIT_DIAMONDS, SUIT_HEARTS, SUIT_SPADES]
 
 HIDDEN = "(hidden)"
 
-RANK_A = 1
+RANK_A = 1  # TODO Rename to just "RANK_1" maybe?? And JACK, QUEEN, and KING too??
 RANK_2 = 2
 RANK_3 = 3
 RANK_4 = 4
