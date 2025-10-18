@@ -1,2 +1,4 @@
-# when making changes, adjust setup.cfg too !
-requests==2.26.0
+# Packages REQUIRED for code execution.
+# When making changes, adjust setup.cfg too !
+
+requests>=2.32.0  # TODO Remove arbitrary requirement when there is an actual requirement
