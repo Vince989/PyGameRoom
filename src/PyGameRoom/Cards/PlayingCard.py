@@ -50,7 +50,7 @@ class PlayingCard(Card):
         self.rank = rank
         self.joker_id = joker_id
 
-    def __str__(self):  # pragma:  cover
+    def __str__(self):  # pragma: no cover
         if self.visible:
             if self.joker_id:
                 return "Joker #" + str(self.joker_id)
